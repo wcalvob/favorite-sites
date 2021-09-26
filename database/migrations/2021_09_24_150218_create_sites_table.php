@@ -15,11 +15,13 @@ class CreateSitesTable extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('code');
             $table->string('url');
             $table->string('title', 50);
-            $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->string('description');
             $table->string('visibility');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

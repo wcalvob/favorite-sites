@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/* Route::get('/', function () {
+    return view('sites');
+}); */
+
+/* Route::get('/register', function () {
+    return view('register');
+}); */
+
+
+/* Route::get('/', [App\Http\Controllers\PublicController::class, 'public'])->name(''); */
+Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('');
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/favorites/register', [App\Http\Controllers\FavoriteController::class, 'index'])->name('favorites');
+
+Route::post('/favorites/register', [App\Http\Controllers\FavoriteController::class, 'store'])->name('favorites.store');

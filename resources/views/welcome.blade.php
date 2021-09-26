@@ -14,12 +14,6 @@
     <!-- <link rel="stylesheet" href="../css/app.css" type="text/css" /> -->
     <link rel="stylesheet" type="text/css" href="styles.css">
 
-    <style>
-        body {
-            font-family: 'Nunito', sans-serif;
-            background: red;
-        }
-    </style>
 </head>
 
 <body class="antialiased">
