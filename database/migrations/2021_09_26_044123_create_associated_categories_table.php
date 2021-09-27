@@ -19,6 +19,7 @@ class CreateAssociatedCategoriesTable extends Migration
             $table->foreign('site_id')->references('id')->on('sites');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->timestamps();
         });
     }
 

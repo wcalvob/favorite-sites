@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    
+
     /**
      * Show the application dashboard.
      *
@@ -26,13 +26,11 @@ class HomeController extends Controller
                 ->limit(10)
                 ->get();
 
-            $sites_categories = DB::table('sites_categories')
-
-                ->join('categories', 'categories.id', '=', 'sites_categories.category_id')
+            $associated_categories = DB::table('associated_categories')
+                ->join('categories', 'categories.id', '=', 'associated_categories.category_id')
                 ->get();
 
-            return view('home', compact('sites'), compact('sites_categories'));
-
+            return view('home', compact('sites'), compact('associated_categories'));
         } else {
 
             $sites = DB::table('sites')
@@ -40,14 +38,17 @@ class HomeController extends Controller
                 ->latest()
                 ->limit(10)
                 ->get();
-            return view('home', compact('sites'));
-            
+
+            $associated_categories = DB::table('associated_categories')
+                ->join('categories', 'categories.id', '=', 'associated_categories.category_id')
+                ->get();
+
+            return view('home', compact('sites'), compact('associated_categories'));
         }
-        
     }
 
-    public function home(){
+    public function home()
+    {
         return redirect()->to('/home');
     }
-
 }

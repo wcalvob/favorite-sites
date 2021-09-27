@@ -5,9 +5,25 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Registro') }}</div>
+
+                <div class="card-header text-center h4">
+                    Registrar Sitio Favorito
+                </div>
 
                 <div class="card-body">
+
+                    @if(session()->has('msj'))
+                    <div class="alert alert-danger text-center">{{ session('msj') }}</div>
+                    @endif
+                    @if(session()->has('msjok'))
+                    <div class="alert alert-success text-center">
+                        {{ session('msjok') }}
+                        <a href="{{ url('/home') }}" class="btn-link">
+                            Ver
+                        </a>
+                    </div>
+                    @endif
+
                     <form method="post" action="{{ route('favorites.store') }}">
                         @csrf
 
@@ -54,29 +70,28 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="titulo" class="col-md-4 col-form-label text-md-right">Categorías</label>
+                            <label for="category" class="col-md-4 col-form-label text-md-right">Categorías</label>
 
                             <div class="col-md-6">
                                 @foreach($categories as $cat)
-                                <div><input id="titulo" type="checkbox" class="" name="category_id[]" value="{{ $cat->id }}" autocomplete="titulo" autofocus> {{ $cat->name }} &nbsp;&nbsp;</div>
+                                <div><input id="category" type="checkbox" class="" name="category_id[]" value="{{ $cat->id }}" autocomplete="category" autofocus> {{ $cat->name }} &nbsp;&nbsp;</div>
                                 @endforeach
+                                <div>
+                                    <a href="{{ url('/categories/register') }}" class="btn btn-link">Agregar Categoría</a>
+                                </div>
                             </div>
 
                         </div>
 
                         <div class="form-group row">
-                            <label for="titulo" class="col-md-4 col-form-label text-md-right">Visibilidad</label>
+                            <label for="visibility" class="col-md-4 col-form-label text-md-right">Visibilidad</label>
 
                             <div class="col-md-6">
-                                <input id="titulo" type="radio" class="" name="visibility" value="publico" required autocomplete="titulo" autofocus> Público <br>
-                                <input id="titulo" type="radio" class="" name="visibility" value="privado" required autocomplete="titulo" autofocus> Privado <br>
+                                <input id="visibility" type="radio" class="" name="visibility" value="público" required autocomplete="visibility" autofocus> Público <br>
+                                <input id="visibility" type="radio" class="" name="visibility" value="privado" required autocomplete="visibility" autofocus> Privado <br>
                             </div>
 
                         </div>
-
-
-
-
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -84,7 +99,7 @@
                                     Guardar
                                 </button>
                                 <a href="{{ url('/home') }}" class="btn btn-link">
-                                    Cancelar
+                                    Regresar
                                 </a>
                             </div>
                         </div>
